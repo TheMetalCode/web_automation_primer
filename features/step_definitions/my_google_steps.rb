@@ -10,6 +10,7 @@ When(/^I search for Kittens$/) do
   #Hint: find a good way to identify the search field, enter Kittens in it
   #Hint: find a good way to identify the search button, click it
   #Hint: get good at using CSS selectors, which can be used with capybara's "find" method.
+  #Ex. find('#some_element_id').set 'text'
   #http://www.w3schools.com/cssref/css_selectors.asp
   #https://github.com/jnicklas/capybara#interacting-with-forms
   #https://github.com/jnicklas/capybara#clicking-links-and-buttons
@@ -19,6 +20,12 @@ Then(/^I see the Google Search Results Page$/) do
   pending # express the regexp above with the code you wish you had
   #Hint: how do you know you're on a different page than before?
   #https://github.com/jnicklas/capybara#navigating
+
+  #Then steps are most often going to involve RSpec expectation matchers
+  #Which take this form
+  #expect(current_url).to contain(expected_string)
+  #expect(current_url).to match(/\?some_param=\d+/)
+  #https://relishapp.com/rspec/rspec-expectations/docs
 end
 
 Then(/^the Google Search Results Page has Kittens$/) do
