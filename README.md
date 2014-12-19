@@ -208,14 +208,26 @@ end
 
 You can then re-run the cucumber scenario to trigger the breakpoint and investigate further.
 
-![A pry console](http://screencast.com/t/UqxatJaSB)
+![A pry console](https://cloud.githubusercontent.com/assets/1831850/5498556/9019fc76-86d5-11e4-91de-8a9932a5494c.png)
 
 From there you can:
 
-- Inspect the desired element in the browser and discern the correct element identifier to use: http://screencast.com/t/o0dPtFg9e7
+- [Inspect the desired element in the browser](http://screencast.com/t/o0dPtFg9e7) and discern the correct element identifier to use.
+
 - Try out the new identifier right in the console to make sure it works before committing the code:
-![Trying out the id I found](http://screencast.com/t/WNkFbBgl)
+
+![Trying out the id I found](https://cloud.githubusercontent.com/assets/1831850/5498562/a6edfd30-86d5-11e4-87fe-79a31bd713a7.png)
+
 - Explore the "page" object to see what attributes it has:
-![Exploring an object in pry is similar to exploring a file system](http://screencast.com/t/leMMJz2TqVok)
+
+![Exploring an object in pry is similar to exploring a file system](https://cloud.githubusercontent.com/assets/1831850/5498567/b73b5890-86d5-11e4-8297-f6ac4cf9bd7b.png)
+
+You also have three basic step debugging commands to use in your Pry console:
+
+- 'continue' or 'c': Continues execution until either next binding.pry breakpoint or, if there isn't one, until the program finishes or terminates.
+- 'step' or 's': This 'steps into' the next line of code in the entire execution stack, including both the code you wrote along with the code made available via your various Gems.
+- 'next' or 'n': This 'steps over' to the next line of code in the specific function you're in, while skipping over any underlying code that might be in the stack.
+
+The 'continue' command will be by far the most common for us - use it when you're doing exploring and ready for the test to continue executing. Don't forget to remove all binding.pry statements when you're finished debugging.
 
 This definitely isn't everything you can do with Pry, but it covers most of how we'll use it as UI test automators.
