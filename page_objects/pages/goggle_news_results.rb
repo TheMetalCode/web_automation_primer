@@ -2,14 +2,15 @@
 class GoogleNewsResults < SitePrism::Page
 
   #Hint: declare a url matcher that would return true for this page's url
-  # set_url_matcher /^https:\/\/google\.com\/\?the_rest_of_the_url$/
+  set_url "/{?query*}"
+  set_url_matcher /^https:\/\/google\.com\/\?nws$/
 
   #Hint: define elements here like so
-  # element :some_element, 'some_css_selector'
+  # element :search_results_first_link, first("#rso li:nth-child(2) a")['href']
 
   #Hint: define methods here, like so
-  # def set_some_element(text)
-  #   some_element.set text
-  # end
+  def click_first_search_result
+    # search_results_first_link.click
+  end
 
 end

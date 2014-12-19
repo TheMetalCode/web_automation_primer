@@ -2,14 +2,22 @@
 class GoogleSearchResults < SitePrism::Page
 
   #Hint: declare a url matcher that would return true for this page's url
-  # set_url_matcher /^https:\/\/google\.com\/\?the_rest_of_the_url$/
+  set_url_matcher /^https:\/\/google\.com\/\?query*$/
 
-  #Hint: define elements here like so
-  # element :some_element, 'some_css_selector'
-
-  #Hint: define methods here, like so
-  # def set_some_element(text)
-  #   some_element.set text
+  element :search_field, "#gbqfq"
+  element :news_tab, "[link='News']"
+  # sections :menu_tabs, "#hbtb_msb" do
+    # element :title, "a.title"
+    # element :href,"a.href"
   # end
 
+  def get_search_field_value
+    search_field.text
+  end
+
+  def click_news_tab
+    news_tab.click
+  end
+
 end
+
