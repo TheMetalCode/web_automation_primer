@@ -3,6 +3,11 @@ require 'capybara/dsl'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
 require 'pry'
+require 'site_prism'
+
+#loading page object files
+Dir["#{File.dirname(__FILE__)}/../../page_objects/*.rb"].each {|f| require f }
+Dir["#{File.dirname(__FILE__)}/../../page_objects/pages/*.rb"].each {|f| require f }
 
 Capybara.run_server = false
 #This means each attempt to interact with a web element will wait up to 10 seconds for it to exist
