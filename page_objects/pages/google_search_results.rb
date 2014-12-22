@@ -7,7 +7,7 @@ class GoogleSearchResults < SitePrism::Page
 
   element :search_field, "#gbqfq"
   element :news_tab, "#hdtb_msb div:nth-child(5) a"
-  element :first_search_result, "#rso div.srg li:nth-child(1) div h3 a"
+  element :first_search_result, "#rso div.srg:nth-child(4) li:nth-child(1) div:nth-child(1) h3:nth-child(1) a:nth-child(1)"
 
   def click_news_tab
     news_tab.click
@@ -18,7 +18,7 @@ class GoogleSearchResults < SitePrism::Page
   end
 
   def get_first_search_result_url
-    first_search_result.value
+    first_search_result[:href].gsub(/(http:\/\/)/, "")
   end
 end
 

@@ -7,6 +7,7 @@ class GoogleNewsResults < SitePrism::Page
 
   #Hint: define elements here like so
   element :first_news_result, "#rso li:nth-child(2) div div._cnc h3 a"
+  #rso > li:nth-child(2) > div > div._cnc > h3 > a
 
   #Hint: define methods here, like so
   def click_first_news_result
@@ -14,6 +15,6 @@ class GoogleNewsResults < SitePrism::Page
   end
 
   def get_first_news_result_url
-    first_news_result.value
+    first_news_result[:href].gsub(/(http:\/\/)/, "")
   end
 end
