@@ -6,11 +6,14 @@ class GoogleNewsResults < SitePrism::Page
   set_url_matcher /^https:\/\/google\.com\/\?nws$/
 
   #Hint: define elements here like so
-  # element :search_results_first_link, first("#rso li:nth-child(2) a")['href']
+  element :first_search_result, "#rso li:nth-child(2) div div._cnc h3 a"
 
   #Hint: define methods here, like so
   def click_first_search_result
-    # search_results_first_link.click
+    first_search_result.click
   end
 
+  def get_first_search_result_url
+    first_search_result.value
+  end
 end

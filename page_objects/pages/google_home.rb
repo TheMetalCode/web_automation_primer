@@ -10,6 +10,10 @@ class GoogleHome < SitePrism::Page
   element :search_button, "#gbqfb"
 
   #Hint: define methods here, like so
+  def get_search_field
+    search_field.value
+  end
+
   def set_search_field(text)
     search_field.set text
   end
