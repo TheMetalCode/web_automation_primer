@@ -6,7 +6,7 @@ class GoogleHome < SitePrism::Page
 
   #Hint: define elements here like so
   # element :some_element, 'some_css_selector'
-  element :search_field, "#gbqfq"
+  element :search_field, '#gbqfq'
   element :search_button, "#gbqfb"
 
   #Hint: define methods here, like so

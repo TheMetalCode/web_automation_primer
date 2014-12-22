@@ -11,10 +11,9 @@ Feature: As a web automation tester in training I want to automate basic searchi
     Then I see the Google Search Results Page
     #An And step mimics the purpose of the step above it, so this would function as another Then step
     And the Google Search Results Page has Kittens
-
     #You can perform any number of additional When-Then tests within a given scenario
-#    When I click the first result on the Google Search Results page
-#    Then I am redirected to the corresponding website from the search result
+    When I click the first result on the Google Search Results page
+    Then I am redirected to the corresponding website from the search result
 
   #A new scenario for a News search, note that we're re-using a couple of earlier steps
   #Cucumber steps are defined once but can be reused all over
@@ -24,3 +23,5 @@ Feature: As a web automation tester in training I want to automate basic searchi
     When I click the News Tab on the Google Search Results Page
     Then I see the Google News Results Page
     And the Google News Results Page has Kittens
+    When I click the first result on the Google News Results page
+    Then I am redirected to the corresponding website from the news results

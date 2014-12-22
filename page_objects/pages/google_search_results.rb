@@ -7,10 +7,18 @@ class GoogleSearchResults < SitePrism::Page
 
   element :search_field, "#gbqfq"
   element :news_tab, "#hdtb_msb div:nth-child(5) a"
+  element :first_search_result, "#rso div.srg li:nth-child(1) div h3 a"
 
   def click_news_tab
     news_tab.click
   end
 
+  def click_first_search_result
+    first_search_result.click
+  end
+
+  def get_first_search_result_url
+    first_search_result.value
+  end
 end
 

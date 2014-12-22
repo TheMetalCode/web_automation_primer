@@ -18,6 +18,14 @@ end
 Then(/^the Google Search Results Page has Kittens$/) do
   expect($app.search_results).to have_content $app.home.get_search_field
 end
+
+When(/^I click the first result on the Google Search Results page$/) do
+  $app.search_results.click_first_search_result
+end
+
+Then(/^I am redirected to the corresponding website from the search result$/) do
+  expect(current_url).to eq($app.search_results.get_first_search_result_url)
+end
 #
 When(/^I click the News Tab on the Google Search Results Page$/) do
   $app.search_results.news_tab.value
@@ -31,14 +39,14 @@ Then(/^I see the Google News Results Page$/) do
 end
 
 Then(/^the Google News Results Page has Kittens$/) do
-  expect($app.news_results).to have_content $app.home.get_search_field
+  expect($app.news_results).to have_content('Kittens')
+  # expect($app.news_results).to have_content $app.home.get_search_field
 end
 
-
-When(/^I click the first result on the Google Search Results page$/) do
-  $app.news_results.click_first_search_result
+When(/^I click the first result on the Google News Results page$/) do
+  $app.news_results.click_first_news_result
 end
 
-Then(/^I am redirected to the corresponding website from the search result$/) do
-  expect(current_url).to eq($app.news_results.get_first_search_result_url)
+Then(/^I am redirected to the corresponding website from the news results$/) do
+  expect(current_url).to eq($app.news_results.get_first_news_result_url)
 end
