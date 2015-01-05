@@ -9,11 +9,11 @@ class Google
 
   #Hint: This message should return a new instance of GoogleSearchResults
   def search_results
-    GoogleSearchResults.new
+    GoogleSearchResults.instance
   end
 
   #Hint: This message should return a new instance of GoogleNewsResults
   def news_results
-    GoogleNewsResults.new
+    GoogleNewsResults.instance
   end
 end
