@@ -11,12 +11,11 @@ When(/^I search for Kittens$/) do
 end
 
 Then(/^I see the Google Search Results Page$/) do
-  $app.search_results.load(query: 'Kittens')
-  $app.search_results.displayed?
+  expect($app.search_results.displayed?).to be_truthy
 end
 
 Then(/^the (.*) Page has Kittens$/) do |page_name|
-  expect($app.send(page_name).text).to have_content('Kittens')
+  expect($app.send(page_name).text).to include('Kittens')
 end
 
 When(/^I click the first result on the Google Search Results page$/) do
@@ -32,12 +31,10 @@ When(/^I click the News Tab on the Google Search Results Page$/) do
 end
 
 Then(/^I see the Google News Results Page$/) do
-  $app.news_results.load(query: 'Kittens')
-  $app.news_results.displayed?
+  expect($app.news_results.displayed?).to be_truthy
 end
 
 When(/^I click the first result on the Google News Results page$/) do
-  binding.pry
   $app.news_results.click_first_news_result
 end
 

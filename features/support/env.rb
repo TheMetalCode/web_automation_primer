@@ -6,6 +6,7 @@ require 'pry'
 require 'site_prism'
 
 #loading page object files
+
 Dir["#{File.dirname(__FILE__)}/../../page_objects/*.rb"].each {|f| require f }
 Dir["#{File.dirname(__FILE__)}/../../page_objects/sections/*.rb"].each {|f| require f }
 Dir["#{File.dirname(__FILE__)}/../../page_objects/pages/*.rb"].each {|f| require f }
