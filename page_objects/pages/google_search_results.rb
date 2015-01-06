@@ -1,15 +1,24 @@
-#Hint: This should model the google search results page
+require 'singleton'
+
 class GoogleSearchResults < SitePrism::Page
+  include Singleton
 
-  #Hint: declare a url matcher that would return true for this page's url
-  # set_url_matcher /^https:\/\/google\.com\/\?the_rest_of_the_url$/
+  attr_reader :first_search_result_url
 
-  #Hint: define elements here like so
-  # element :some_element, 'some_css_selector'
+  set_url "/\?query*$/"
+  set_url_matcher /^https:\/\/www\.google\.com\/\#q=.+$/
 
-  #Hint: define methods here, like so
-  # def set_some_element(text)
-  #   some_element.set text
-  # end
+  element :search_field, "#gbqfq"
+  elements :query_search_results, "#rso div.srg li div h3 a:nth-child(1)"
+  section :tab_sections, TabSections, "#hdtb_msb"
+
+  def click_news_tab
+    tab_sections.news_results_tab.click
+  end
+
+  def click_first_search_result
+    @first_search_result_url = query_search_results.first[:href].gsub(/(http:\/\/)/, "")
+    query_search_results.first.click
+  end
 
 end

@@ -1,15 +1,17 @@
-#Hint: This should model the page that results when you click News from the initial search results page
+require 'singleton'
 class GoogleNewsResults < SitePrism::Page
+  include Singleton
 
-  #Hint: declare a url matcher that would return true for this page's url
-  # set_url_matcher /^https:\/\/google\.com\/\?the_rest_of_the_url$/
+  attr_reader :first_news_result_url
 
-  #Hint: define elements here like so
-  # element :some_element, 'some_css_selector'
+  set_url "/{?query*}"
+  set_url_matcher /^https:\/\/www\.google\.com\/\#q=.+&tbm=nws$/
 
-  #Hint: define methods here, like so
-  # def set_some_element(text)
-  #   some_element.set text
-  # end
+  elements :query_news_results, "#rso li a[href]"
+
+  def click_first_news_result
+    @first_news_result_url = query_news_results.first[:href].gsub(/(http:\/\/)/, "")
+    query_news_results.first.click
+  end
 
 end
