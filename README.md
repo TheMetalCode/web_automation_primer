@@ -231,3 +231,17 @@ You also have three basic step debugging commands to use in your Pry console:
 The 'continue' command will be by far the most common for us - use it when you're doing exploring and ready for the test to continue executing. Don't forget to remove all binding.pry statements when you're finished debugging.
 
 This definitely isn't everything you can do with Pry, but it covers most of how we'll use it as UI test automators.
+
+### Using Rubocop to Maintain Good Ruby Practices
+
+[Rubocop](https://github.com/bbatsov/rubocop) is a tool we use to enforce good Ruby coding practices according to Ruby community standards.
+
+Run it in your console like so:
+
+```
+rubocop --auto-correct
+```
+
+That will fix all the trivial problems it finds (missing spaces, indentation, etc.) and will alert you of more serious problems that you need to fix.
+
+Rubocop is configured in .rubocop.yml. Note the exceptions that have been configured.
