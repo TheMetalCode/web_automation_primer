@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TheMetalCode/web_automation_primer.svg?branch=master)](https://travis-ci.org/TheMetalCode/web_automation_primer)
+
 Web Automation Primer
 =====================
 
