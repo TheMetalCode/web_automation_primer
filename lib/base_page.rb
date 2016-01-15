@@ -1,3 +1,2 @@
 class BasePage < PageFactory
-
 end

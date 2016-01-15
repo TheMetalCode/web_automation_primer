@@ -1,3 +1,2 @@
 class GoogleNewsResults < BasePage
-
 end

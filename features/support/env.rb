@@ -10,10 +10,10 @@ World Foundry
 World StringFactory
 World DateFactory
 
-#loading page object files
-Dir["#{File.dirname(__FILE__)}/../../lib/*.rb"].each {|f| require f }
-Dir["#{File.dirname(__FILE__)}/../../lib/page_objects/*.rb"].each {|f| require f }
-Dir["#{File.dirname(__FILE__)}/../../lib/data_objects/*.rb"].each {|f| require f }
+# loading page object files
+Dir["#{File.dirname(__FILE__)}/../../lib/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/../../lib/page_objects/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/../../lib/data_objects/*.rb"].each { |f| require f }
 
 browser = Watir::Browser.new
 
@@ -21,7 +21,7 @@ Before do
   @browser = browser
 end
 
-at_exit {
+at_exit do
   browser.cookies.clear
   browser.close
-}
+end

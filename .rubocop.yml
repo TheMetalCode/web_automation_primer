@@ -1,0 +1,34 @@
+AllCops:
+  Exclude:
+    - 'config/*'
+    - 'results/*'
+    - '*/results/*'
+    - '*/test_files/*'
+    - 'vendor/*'
+    - 'vendor/bundle/*'
+    - '*/vendor/bundle/*'
+    - 'bin/*'
+    - '*/bin/*'
+
+# It's ok to be explicit about your percent literals
+Style/BarePercentLiterals:
+  Enabled: false
+
+# Rubocop hates Cucumber step definitions
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+# We're fine with these on occasion
+Style/GlobalVars:
+  Enabled: false
+
+# A method name like has_search_result? is fine if that's what is actually being done
+# Preventing that seems arbitrary
+Style/PredicateName:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/ClassLength:
+  Max: 200
