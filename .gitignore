@@ -17,6 +17,7 @@ build/
 /doc/
 /rdoc/
 /.bundle/
+Gemfile.lock
 */bin/*
 */vendor/*
 */.bundle/*
