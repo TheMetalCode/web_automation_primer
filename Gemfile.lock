@@ -70,6 +70,3 @@ DEPENDENCIES
   selenium-webdriver
   test-factory
   watir-webdriver
-
-BUNDLED WITH
-   1.11.2
