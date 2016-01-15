@@ -1,7 +1,7 @@
 Web Automation Primer
 =====================
 
-A training excercise for those relatively new to automated web testing, using [Cucumber](http://cukes.info), [Capybara](https://github.com/jnicklas/capybara), and [SitePrism](https://github.com/natritmeyer/site_prism).
+A training excercise for those relatively new to automated web testing, using [Cucumber](http://cukes.info), [Watir Webdriver](http://watirwebdriver.com/), and [TestFactory](https://github.com/KualiCo/TestFactory).
 
 ## But What If I'm Not Good At Ruby Yet?
 
@@ -35,17 +35,17 @@ Follow on-screen instructions to run "brew doctor" after the install.
 
 - "Watch" this repo so you're notified when it updates (eg. when I change or add instructions).
 - Fork this repo, and then clone it to your local machine.
-- When you change directories into your clone, RVM will tell you to install ruby-2.1.5 if you don't already have it. Just follow the instructions it gives you. If you do already have the desired ruby version, RVM will automatically switch to that version and create a name gemset for you.
+- When you change directories into your clone, RVM will tell you to install ruby-2.3.0 if you don't already have it. Just follow the instructions it gives you. If you do already have the desired ruby version, RVM will automatically switch to that version and create a name gemset for you.
 - Install the bundle:
 
 ```
-gem install bundler
+gem install bundler --no-document
 bundle install
-gem install rubygems-bundler
+gem install rubygems-bundler --no-document
 gem regenerate_binstubs
 ```
 
-- Note that there is basic Cucumber, Capybara, and SitePrism structure set up for you.
+- Note that there is basic Cucumber, WatirWebdriver, and TestFactory structure set up for you.
     - features/my_google.feature: This is the file that will contain our Gherkin-formatted description of our desired behavior, which will drive the tests.
     - features/step_definitions/my_google_steps.rb: This is the file that translates the plain-english steps from the .feature files into executable ruby code. This is the "meat" of our test automation.
     - features/support/env.rb: This is the file that contains initialization and setup for our automated tests.
@@ -73,7 +73,7 @@ features/my_google.feature:5
     And the Google Search Results Page has Kittens
 ```
 
-Insert Capybara code into these steps to successfully perform a Google search for Kittens. You'll find some hints along the way. Ignore all hints related to SitePrism for now.
+Insert Watir-Webdriver code into these steps to successfully perform a Google search for Kittens. You'll find some hints along the way. Ignore all hints related to TestFactory for now.
 
 features/step_definitions/my_google_steps.rb:
 
@@ -106,7 +106,7 @@ features/my_google.feature:16
     Then I am redirected to the corresponding website from the search result
 ```
 
-Insert Capybara code into these steps to successfully find one search result and click on it.
+Insert Watir-Webdriver code into these steps to successfully find one search result and click on it.
 
 features/step_definitions/my_google_steps.rb
 
@@ -135,7 +135,7 @@ features/my_google.feature:21
     And the Google News Results Page has Kittens
 ```
 
-Insert Capybara code into these steps to successfully perform a search for Kittens, click the News tab, and verify that Kitten-related stuff is on the News page.
+Insert Watir-Webdriver code into these steps to successfully perform a search for Kittens, click the News tab, and verify that Kitten-related stuff is on the News page.
 
 features/step_definitions/my_google_steps.rb
 
@@ -153,21 +153,21 @@ Then(/^the Google News Results Page has Kittens$/) do
 end
 ```
 
-### The Page Object Design Pattern: Cleaning Up this Mess with SitePrism
+### The Page Object Design Pattern: Cleaning Up this Mess with TestFactory
 
 Your completed automation code isn't going to be that messy right now since we're talking about a fairly trivial example, but we do still have an opportunity to apply some solid object-oriented design principles. Enter the [Page Object pattern](http://martinfowler.com/bliki/PageObject.html).
 
 If an object is an entity modeled by software that has attributes (eg. a Car object would have many wheels, a motor, etc.) and behavior (eg. a Car object would accelerate, brake, turn, etc.), then we can imagine that an HTML web page conforming to this pattern quite easily. A page's DOM elements would comprise the page object's attributes, and methods could be written using those elements to describe and execute page behavior. Therefore, in our use of the Page Object pattern, every page we seek to test against should be defined as a Ruby class that our step definitions would then instantiate and use.
 
-It is quite possible to [roll your own page object framework](http://watirmelon.com/2012/06/04/roll-your-own-page-objects/) (warning: the linked example uses Watir-Webdriver instead of Capybara) and doing so for yourself would be a great extra-credit excercise to undertake.
+It is quite possible to [roll your own page object framework](http://watirmelon.com/2012/06/04/roll-your-own-page-objects/) and doing so for yourself would be a great extra-credit excercise to undertake.
 
-However, for our purposes, we will use [SitePrism](https://github.com/natritmeyer/site_prism) to streamline our implementation of page objects and to give our objects really neat built-in behavior. Give the README documentation, which is quite good, a good read to get an idea of all that SitePrism can do for us.
+However, for our purposes, we will use [TestFactory](https://github.com/KualiCo/TestFactory ) to streamline our implementation of page objects and to give our objects really neat built-in behavior. Give the README documentation, which is quite good, a good read to get an idea of all that TestFactory can do for us.
 
-Page Object class stubs have been provided for you, with hints. The Cucumber step definitions have also been sprinkled with some additional hints related to SitePrism and page objects, which you are now free to pay attention to.
+Page Object class stubs have been provided for you, with hints. The Cucumber step definitions have also been sprinkled with some additional hints related to TestFactory and page objects, which you are now free to pay attention to.
 
 Your mission:
 
-- In each class file in page_objects/pages, declare elements and methods to perform the web automation tasks you've already accomplished in your existing step definitions.
+- In each class file in lib/page_objects, declare elements and methods to perform the web automation tasks you've already accomplished in your existing step definitions.
 - Update features/step_definitions/my_google_steps.rb to use your newly crafted page object classes.
 
 ### Using Pry to debug when things go haywire
@@ -182,9 +182,9 @@ Feature: As a web automation tester in training I want to automate basic searchi
   Scenario: Basic search                           # features/my_google.feature:5
     Given I am on the Google Home Page             # features/step_definitions/my_google_steps.rb:3
     When I search for Kittens                      # features/step_definitions/my_google_steps.rb:11
-      Unable to find field "gbqfqqq" (Capybara::ElementNotFound)
-      ./features/step_definitions/my_google_steps.rb:12:in `/^I search for Kittens$/' #This is the line of code you're going to want to focus in on
-      features/my_google.feature:9:in `When I search for Kittens'
+          unable to locate element, using {:id=>"gbqfqqq", :tag_name=>"input or textarea", :type=>"(any text type)"} (Watir::Exception::UnknownObjectException)
+          ./features/step_definitions/my_google_steps.rb:15:in `/^I search for Kittens$/'
+          features/my_google.feature:8:in `When I search for Kittens'
     Then I see the Google Search Results Page      # features/step_definitions/my_google_steps.rb:26
     And the Google Search Results Page has Kittens # features/step_definitions/my_google_steps.rb:42
 
@@ -201,14 +201,14 @@ features/step_definitions/my_google_steps.rb:12
 ```ruby
 When(/^I search for Kittens$/) do
   binding.pry #Set a binding.pry at the line of code where you want the program to stop executing for further inspection
-  fill_in "gbqfqqq", :with => 'Kittens'
-  find('#gbqfb').click
+  @browser.text_field(id: "gbqfqqq").set 'Kittens'
+  @browser.text_field(id: "gbqfqqq").click
 end
 ```
 
 You can then re-run the cucumber scenario to trigger the breakpoint and investigate further.
 
-![A pry console](https://cloud.githubusercontent.com/assets/1831850/5498556/9019fc76-86d5-11e4-91de-8a9932a5494c.png)
+![A pry console](https://cloud.githubusercontent.com/assets/1831850/12362848/4af137d8-bb7a-11e5-897e-e367c58d3f94.png)
 
 From there you can:
 
@@ -216,11 +216,11 @@ From there you can:
 
 - Try out the new identifier right in the console to make sure it works before committing the code:
 
-![Trying out the id I found](https://cloud.githubusercontent.com/assets/1831850/5498562/a6edfd30-86d5-11e4-87fe-79a31bd713a7.png)
+![Trying out the id I found](https://cloud.githubusercontent.com/assets/1831850/12362896/a0383b6a-bb7a-11e5-9fba-4d6b21637df5.png)
 
 - Explore the "page" object to see what attributes it has:
 
-![Exploring an object in pry is similar to exploring a file system](https://cloud.githubusercontent.com/assets/1831850/5498567/b73b5890-86d5-11e4-8297-f6ac4cf9bd7b.png)
+![Exploring an object in pry is similar to exploring a file system](https://cloud.githubusercontent.com/assets/1831850/12362934/cfa5007c-bb7a-11e5-90a3-a62b3800a414.png)
 
 You also have three basic step debugging commands to use in your Pry console:
 

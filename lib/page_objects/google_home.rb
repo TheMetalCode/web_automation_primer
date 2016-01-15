@@ -1,0 +1,3 @@
+class GoogleHome < BasePage
+
+end

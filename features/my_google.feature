@@ -1,4 +1,3 @@
-@javascript
 Feature: As a web automation tester in training I want to automate basic searching with Google
 
   #A scenario is a single test, a collection of Given, When, and Then steps
